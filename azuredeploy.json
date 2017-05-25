@@ -96,7 +96,7 @@
       "comments": "Generalized from resource: '/subscriptions/*/resourcegroups/*/providers/Microsoft.ServiceBus/namespaces/*/queues/**'.",
       "type": "Microsoft.ServiceBus/namespaces/queues",
       "name": "[parameters('serviceBusResponseQueueName')]",
-      "apiVersion": [ "variables('sbVersion')" ],
+      "apiVersion": "[variables('sbVersion')]",
       "location": "[variables('location')]",
       "properties": {
         "maxSizeInMegabytes": 1024,
