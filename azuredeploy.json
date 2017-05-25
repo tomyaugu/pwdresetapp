@@ -34,19 +34,7 @@
         "description": "The instance size of the hosting plan (small, medium, or large)."
       }
     },
-    "storageAccountType": {
-      "type": "string",
-      "defaultValue": "Standard_LRS",
-      "allowedValues": [
-        "Standard_LRS",
-        "Standard_GRS",
-        "Standard_ZRS",
-        "Premium_LRS"
-      ],
-      "metadata": {
-        "description": "Storage Account type"
-      }
-    },
+    
     "repoURL": {
       "type": "string",
       "defaultValue": "https://github.com/morsh/functions.git",
@@ -54,13 +42,7 @@
         "description": "The URL for the GitHub repository that contains the project to deploy."
       }
     },
-    "repoURL2": {
-      "type": "string",
-      "defaultValue": "https://github.com/morsh/functions.git",
-      "metadata": {
-        "description": "The URL for the GitHub repository that contains the project to deploy."
-      }
-    },   
+    
     "branch": {
       "type": "string",
       "defaultValue": "master",
