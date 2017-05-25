@@ -6,7 +6,7 @@
     "appName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the function app that you wish to create."
+        "description": "The name of the function app that you wish to create,,,,,,,,,,,."
       }
     },
     "sku": {
@@ -63,7 +63,7 @@
     }
   },
   "variables": {
-    "functionAppName": "[parameters('appName')]",
+    "functionAppName": "[parameters('appName')]               ",
     "hostingPlanName": "[parameters('appName')]",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'functions')]"
   },
