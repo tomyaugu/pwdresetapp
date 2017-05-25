@@ -56,7 +56,7 @@
     {
       "comments": "Generalized from resource: '/subscriptions/*/resourcegroups/*/providers/Microsoft.ServiceBus/namespaces/*/AuthorizationRules/RootManageSharedAccessKey'.",
       "type": "Microsoft.ServiceBus/namespaces/AuthorizationRules",
-      "name": "[variables('defaultSASKeyName')]",
+      "name": "[parameters('serviceBusNamespaceName')]/[variables('defaultSASKeyName')]",
       "apiVersion": "[variables('sbVersion')]",
       "properties": {
         "rights": [
