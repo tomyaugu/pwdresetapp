@@ -36,10 +36,10 @@
     }
   },
   "variables": {
-    "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
-    "defaultSASKeyName": "[parameters('serviceBusNamespaceName')/parameters('RootManageSharedAccessKey')]",
+    "defaultSASKeyName": "[concat(parameters('serviceBusNamespaceName'),'/',parameters('sasKeyName'))]",
     "location": "[resourceGroup().location]",
-    "sbVersion": "[parameters('serviceBusApiVersion')]"
+    "sbVersion": "[parameters('serviceBusApiVersion')]",
+    "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('sasKeyName'))]"
   },
   "resources": [
     {
@@ -73,13 +73,12 @@
         ]
       },
       "dependsOn": [
-        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusRequestQueueName'))]"
       ]
     },
     {
       "comments": "Generalized from resource: '/subscriptions/*/resourcegroups/*/providers/Microsoft.ServiceBus/namespaces/*/queues/**'.",
       "type": "Microsoft.ServiceBus/namespaces/queues",
-      "name": "[parameters('serviceBusRequestQueueName')]",
+      "name": "[concat(parameters('serviceBusNamespaceName'),'/',parameters('serviceBusRequestQueueName'))]",
       "apiVersion": "[variables('sbVersion')]",
       "location": "[variables('location')]",
       "properties": {
@@ -102,7 +101,7 @@
     {
       "comments": "Generalized from resource: '/subscriptions/*/resourcegroups/*/providers/Microsoft.ServiceBus/namespaces/*/queues/**'.",
       "type": "Microsoft.ServiceBus/namespaces/queues",
-      "name": "[parameters('serviceBusResponseQueueName')]",
+      "name": "[concat(parameters('serviceBusNamespaceName'),'/',parameters('serviceBusResponseQueueName'))]",
       "apiVersion": "[variables('sbVersion')]",
       "location": "[variables('location')]",
       "properties": {
@@ -122,5 +121,11 @@
         "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusNamespaceName'))]"
       ]
     }
-  ]
+  ],
+  "outputs": {
+    "NamespaceDefaultConnectionString": {
+      "type": "string",
+      "value": "[listkeys(variables('authRuleResourceId'), variables('sbVersion')).primaryConnectionString]"
+    }
+  }
 }
